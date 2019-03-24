@@ -16,6 +16,7 @@ public class View {
     private JButton p2;
     private JButton[] buttons;
     private JButton reset;
+    private String name;
 
     public View() {
         this.frame = new JFrame("TicTacToe");
@@ -43,6 +44,7 @@ public class View {
         frame.add(reset);
         frame.add(p2);
         frame.setVisible(true);
+        this.name = JOptionPane.showInputDialog("Enter Player Name: ");
     }
 
     public void setListeners(Controller c){
@@ -94,7 +96,7 @@ public class View {
         JDialog d = new JDialog(frame);
         JLabel l = new JLabel("Game Draw");
         d.add(l);
-        d.setSize(100, 100);
+        d.setSize(200, 100);
         d.setVisible(true);
         this.resetGame();
     }
@@ -102,15 +104,17 @@ public class View {
     public void isWinner() {
         JDialog d = new JDialog(frame);
         if (this.p1.isEnabled()){
-            JLabel l = new JLabel("Player 2 Won");
+            String txt = "Player 2 Won" + this.name + " Lost";
+            JLabel l = new JLabel(txt);
             d.add(l);
-            d.setSize(100, 100);
+            d.setSize(200, 100);
             d.setVisible(true);
         }
         else if (this.p2.isEnabled()){
-            JLabel l = new JLabel("Player 1 Won");
+            String txt = this.name + " Won, Player 2 Lost";
+            JLabel l = new JLabel(txt);
             d.add(l);
-            d.setSize(100, 100);
+            d.setSize(200, 100);
             d.setVisible(true);
         }
         this.resetGame();
